@@ -23,28 +23,38 @@ public class GuessingGame extends JFrame {
 		String guessText = txtGuess.getText();
 		String message = "";
 		
-		// check the guess for too high/too low
-		int guess = Integer.parseInt(guessText);
-		
-		//too high
-		if (guess > theNumber)
-		{
-			message = guess + " was to high. Guess again!";
-			lblOutput.setText(message);
+		try {
+					
+				
+				// check the guess for too high/too low
+				int guess = Integer.parseInt(guessText);
+				
+				//too high
+				if (guess > theNumber)
+				{
+					message = guess + " was to high. Guess again!";
+					lblOutput.setText(message);
+				}
+				// too low
+				else if (guess < theNumber)
+				{
+					message = guess + " was too low. Guess again!";
+					lblOutput.setText(message);
+				}
+				else //guessesd correctly
+				{
+					message = guess + " was right! You win! Let's play again!";
+					lblOutput.setText(message);
+					newGame();
+				}
+			}
+		catch(Exception e) {
+			lblOutput.setText("Enter a whole number between 1 and 100.");
 		}
-		// too low
-		else if (guess < theNumber)
-		{
-			message = guess + " was too low. Guess again!";
-			lblOutput.setText(message);
+		finally {
+		txtGuess.requestFocus();
+		txtGuess.selectAll();
 		}
-		else //guessesd correctly
-		{
-			message = guess + " was right! You win! Let's play again!";
-			lblOutput.setText(message);
-			newGame();
-		}
-		
 	}
 	public void newGame() { // create  a new random number 1..100
 		
@@ -53,6 +63,7 @@ public class GuessingGame extends JFrame {
 	}
 	
 	public GuessingGame() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
 		JLabel lblDantesHiloGuessing = new JLabel("Dante's Hi-Lo Guessing Game");
@@ -73,6 +84,11 @@ public class GuessingGame extends JFrame {
 		lblNewLabel.setForeground(new Color(0, 0, 0));
 		
 		txtGuess = new JTextField();
+		txtGuess.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				checkGuess();
+			}
+		});
 		txtGuess.setBounds(247, 6, 69, 26);
 		panel.add(txtGuess);
 		txtGuess.setHorizontalAlignment(SwingConstants.CENTER);
