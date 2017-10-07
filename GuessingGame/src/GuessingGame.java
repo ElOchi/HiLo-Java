@@ -54,7 +54,7 @@ public class GuessingGame extends JFrame {
 		finally {
 		txtGuess.requestFocus();
 		txtGuess.selectAll();
-		}
+		} 
 	}
 	public void newGame() { // create  a new random number 1..100
 		
@@ -63,6 +63,9 @@ public class GuessingGame extends JFrame {
 	}
 	
 	public GuessingGame() {
+		setTitle("Guessing Game");
+		getContentPane().setBackground(new Color(102, 153, 204));
+		setBackground(new Color(51, 204, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
@@ -73,6 +76,8 @@ public class GuessingGame extends JFrame {
 		getContentPane().add(lblDantesHiloGuessing);
 		
 		JPanel panel = new JPanel();
+		panel.setForeground(new Color(255, 255, 0));
+		panel.setBackground(new Color(102, 153, 204));
 		panel.setBounds(48, 92, 354, 42);
 		getContentPane().add(panel);
 		panel.setLayout(null);
@@ -84,6 +89,7 @@ public class GuessingGame extends JFrame {
 		lblNewLabel.setForeground(new Color(0, 0, 0));
 		
 		txtGuess = new JTextField();
+		txtGuess.setForeground(new Color(255, 0, 0));
 		txtGuess.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				checkGuess();
